@@ -1,0 +1,14 @@
+#-----------------------------------------------------------
+# Vivado v2020.1 (64-bit)
+# SW Build 2902540 on Wed May 27 19:54:49 MDT 2020
+# IP Build 2902112 on Wed May 27 22:43:36 MDT 2020
+# Start of session at: Tue Nov 29 12:41:25 2022
+# Process ID: 23784
+# Current directory: C:/Users/anshu/OneDrive/Desktop/School/EE324_labs/Lab1
+# Command line: vivado.exe -gui_launcher_event rodinguilauncherevent44392 C:\Users\anshu\OneDrive\Desktop\School\EE324_labs\Lab1\Lab1.xpr
+# Log file: C:/Users/anshu/OneDrive/Desktop/School/EE324_labs/Lab1/vivado.log
+# Journal file: C:/Users/anshu/OneDrive/Desktop/School/EE324_labs/Lab1\vivado.jou
+#-----------------------------------------------------------
+start_gui
+open_project C:/Users/anshu/OneDrive/Desktop/School/EE324_labs/Lab1/Lab1.xpr
+update_compile_order -fileset sources_1

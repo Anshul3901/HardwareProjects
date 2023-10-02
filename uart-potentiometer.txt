@@ -1,0 +1,101 @@
+
+.extern uart1_init
+.extern uart1_set_baud
+.extern uart1_reset
+.global main
+.equ BG115200, 124
+.equ BD115200, 6
+.equ UART1_SR,		0xE000102C
+.equ UART1_DATA,	0xE0001030
+.equ blueEn, 0x43C00000
+.equ greenEn, 0x43C00010
+.equ redEn, 0x43C00020
+.equ SEG_DISP_EN, 0X43C10000
+main:
+	bl uart1_init
+	ldr r0, =BG115200
+	ldr r1,=BD115200
+	bl uart1_set_baud
+	and r6,#0
+	ldr r2,=SEG_DISP_EN
+	mov r1,#1
+	str r1,[r2]
+	add r2,#4
+	b loop
+loop:
+	ldr r0,=UART1_DATA
+	ldr r1,[r0]
+	cmp r1,#'R'
+	beq red_on
+	cmp r1,#'G'
+	beq green_on
+	cmp r1,#'B'
+	beq blue_on
+	b loop
+red_on:
+	ldr r3,=redEn
+	mov r5,#1
+	bl uart1_reset
+	bl data_check
+	str r5,[r3],#0x04
+	mov r5,#0xFF
+	str r5,[r3],#0x04
+	str r6,[r3]
+	b display
+	b loop
+blue_on:
+	ldr r3,=blueEn
+	mov r5,#1
+	bl uart1_reset
+	bl data_check
+	str r5,[r3],#0x04
+	mov r5,#0xFF
+	str r5,[r3],#0x04
+	str r6,[r3]
+	b display
+	b loop
+green_on:
+	ldr r3,=greenEn
+	mov r5,#1
+	bl uart1_reset
+	bl data_check
+	str r5,[r3],#0x04
+	mov r5,#0xFF
+	str r5,[r3],#0x04
+	str r6,[r3]
+	b display
+	b loop
+
+data_check:
+	ldr r0,=UART1_DATA
+	ldr r1,[r0]
+	cmp r1,#0
+	beq data_check
+	and r6,#0
+	b has_data
+	bx lr
+has_data:
+	lsl r6,#4
+	cmp r1,#'A'
+	bgt character
+	blt number
+store:
+	add r6, r1
+	ldr r1,[r0]
+	cmp r1,#0xD
+	bxeq lr
+	b has_data
+character:
+	sub r1,#55
+	b store
+number:
+	sub r1,#0x30
+	b store
+
+display:
+	and r4, r6,#0xF0
+	lsl r4,#4
+	and r6,#0xF
+	add r4,r6
+	str r4,[r2]
+	b loop

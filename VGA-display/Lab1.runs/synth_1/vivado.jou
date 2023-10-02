@@ -1,0 +1,12 @@
+#-----------------------------------------------------------
+# Vivado v2020.1 (64-bit)
+# SW Build 2902540 on Wed May 27 19:54:49 MDT 2020
+# IP Build 2902112 on Wed May 27 22:43:36 MDT 2020
+# Start of session at: Wed Sep 27 17:50:37 2023
+# Process ID: 24312
+# Current directory: C:/Users/anshu/OneDrive/Desktop/School/EE324_labs/Lab1/Lab1.runs/synth_1
+# Command line: vivado.exe -log vga_wrapper.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source vga_wrapper.tcl
+# Log file: C:/Users/anshu/OneDrive/Desktop/School/EE324_labs/Lab1/Lab1.runs/synth_1/vga_wrapper.vds
+# Journal file: C:/Users/anshu/OneDrive/Desktop/School/EE324_labs/Lab1/Lab1.runs/synth_1\vivado.jou
+#-----------------------------------------------------------
+source vga_wrapper.tcl -notrace
